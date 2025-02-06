@@ -93,3 +93,7 @@ Icon
 .buildlog/
 .history
 .svn/
+
+
+# env
+.env
