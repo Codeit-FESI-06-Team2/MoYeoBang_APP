@@ -94,6 +94,8 @@ Icon
 .history
 .svn/
 
-
 # env
 .env
+
+# FVM Version Cache
+.fvm/
