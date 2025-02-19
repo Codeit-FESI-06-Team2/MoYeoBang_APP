@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- 바깥 사각형 배경 -->
+  <rect x="30" y="30" width="140" height="140" fill="#6C5CE7"/>
+  
+  <!-- 내부 흰색 사각형 -->
+  <rect x="55" y="55" width="90" height="90" fill="white"/>
+  
+  <!-- 원을 조금 더 왼쪽으로 이동 -->
+  <circle cx="85" cy="100" r="20" fill="#6C5CE7"/>
+</svg>
