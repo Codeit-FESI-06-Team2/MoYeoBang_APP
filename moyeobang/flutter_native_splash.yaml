@@ -2,7 +2,9 @@ flutter_native_splash:
 
   # 배경 색상
   color: "#6659F4"
+  android: true
 
-  # 배경 색상
+  # 안드로이드 12 이상
   android_12:
     color: "#6659F4"
+    image: "assets/image/transparent.png" # 투명 이미지
