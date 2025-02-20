@@ -4,6 +4,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:moyeobang/common/app_colors.dart';
 import 'package:moyeobang/controller/webview_controller.dart';
+import 'package:moyeobang/screen/custom_splash_screen.dart';
 import 'package:moyeobang/widget/webview_widget.dart';
 
 /// 웹뷰 화면
@@ -22,8 +23,12 @@ class WebViewScreen extends GetView<WebViewController> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.backgroundColor,
-        body: SafeArea(
-            child: PopScope(
+        body: Stack(
+          children: [
+
+            /// 웹뷰 스크린
+            SafeArea(
+              child: PopScope(
                 canPop: false,
                 onPopInvokedWithResult: (didPop, result) async {
                   final shouldExit = await controller.handleBackPress(context);
@@ -31,13 +36,19 @@ class WebViewScreen extends GetView<WebViewController> {
                     SystemNavigator.pop();
                   }
                 },
-                child: Column(children: <Widget>[
-                  Expanded(
-                    child: Stack(children: [
-                      /// 중단 - 웹뷰
-                      WebViewWidget(initUrl: initUrl),
-                    ]),
-                  ),
-                ]))));
+                child: Column(
+                  children: <Widget>[
+                    Expanded(child: WebViewWidget(initUrl: initUrl)),
+                  ],
+                ),
+              ),
+            ),
+
+            /// 스플래시 이미지
+            Obx(() => controller.isInitialLoadComplete.value
+                ? const SizedBox.shrink()
+                : const CustomSplashScreen()),
+          ],
+        ));
   }
 }

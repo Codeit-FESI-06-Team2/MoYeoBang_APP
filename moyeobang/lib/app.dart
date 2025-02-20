@@ -6,7 +6,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_badge/flutter_app_badge.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:moyeobang/common/app_page_url.dart';
 import 'package:moyeobang/common/pref/app_pref.dart';
@@ -29,8 +28,6 @@ class _AppState extends State<App> {
   /// 앱 버전 확인 + 알림 여부 전역 저장, 푸시 알림 뱃지 삭제
   @override
   void initState() {
-    /// 스플래시 삭제
-    _clearSplash();
 
     /// TODO : 토큰 설정
     // getMyDeviceToken();
@@ -69,6 +66,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+
+    /// 스플래시 이미지 우선 로딩
+    precacheImage(const AssetImage('assets/image/splash_main.png'), context);
+
     /// Getx 사용
     return GetMaterialApp(
       theme: appThemeData,
@@ -109,13 +110,6 @@ void getMyDeviceToken() async {
 Future<void> _deleteBadge() async {
   await FlutterAppBadge.count(0);
   debugPrint("뱃지 삭제");
-}
-
-
-/// 로고 스플래시 1초 유지
-Future<void> _clearSplash() async {
-  await Future.delayed(const Duration(milliseconds: 1000));
-  FlutterNativeSplash.remove();
 }
 
 /// TODO : 배포 시 스토어 URL 적용

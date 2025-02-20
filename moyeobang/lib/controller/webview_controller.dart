@@ -30,6 +30,9 @@ class WebViewController extends GetxController {
   /// 마지막 뒤로가기 시간
   DateTime? lastBackPressTime;
 
+  /// 웹뷰 초기 로드 완료 여부
+  final RxBool isInitialLoadComplete = false.obs;
+
   @override
   void onInit() {
 
@@ -108,5 +111,11 @@ class WebViewController extends GetxController {
       /// TODO : 딥링크 이동 처리
       return;
     }
+  }
+
+  /// 초기 로드 완료 설정
+  void setInitialLoadComplete() async {
+    await Future.delayed(const Duration(milliseconds: 1750));
+    isInitialLoadComplete.value = true;
   }
 }

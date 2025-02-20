@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:collection';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -138,6 +137,11 @@ class WebViewWidget extends StatelessWidget {
         }
 
         return NavigationActionPolicy.ALLOW;
+      },
+
+      /// 웹뷰 로드 완료 처리
+      onLoadStop: (controller, url) {
+        getXController.setInitialLoadComplete();
       },
     );
   }

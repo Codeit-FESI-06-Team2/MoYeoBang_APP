@@ -1,0 +1,8 @@
+flutter_native_splash:
+
+  # 배경 색상
+  color: "#6659F4"
+
+  # 배경 색상
+  android_12:
+    color: "#6659F4"
